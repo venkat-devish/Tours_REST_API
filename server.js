@@ -1,15 +1,18 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const { deleteTour, updateTour, createTour, getTourById, getAllTours } = require('./controllers/tourControllers');
 const morgan = require('morgan');
+const tourRouter = require('./routes/tourRoutes')
+const userRouter = require('./routes/userRoutes')
 dotenv.config({ path: './config.env' })
 
 const app = express();
-app.use(express.json())
-
 const port = process.env.PORT || 7000;
 
-const tourRouter = express.Router('/api/v1/tours');
+// MIDDLEWARES
+app.use(express.json())
+
+app.use('/api/v1/tours', tourRouter)
+app.use('/api/v1/users', userRouter)
 
 app.use(morgan('dev'))
 
@@ -20,17 +23,6 @@ app.use((req, res, next) => {
 
 
 // ROUTES
-app
-    .route('/api/v1/tours')
-    .get(getAllTours)
-    .post(createTour)
-
-app
-    .route('/api/v1/tours/:id')
-    .get(getTourById)
-    .patch(updateTour).delete(deleteTour)
-
-
 // app.get('/api/v1/tours', getAllTours)
 // app.get('/api/v1/tours/:id', getTourById)
 // app.post('/api/v1/tours', createTour)
