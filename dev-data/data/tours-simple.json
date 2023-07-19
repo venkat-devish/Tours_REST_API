@@ -284,5 +284,13 @@
         "duration": 56,
         "maxGroupSize": 85,
         "difficulty": "Easy"
+    },
+    {
+        "id": 0,
+        "name": "The Resonance",
+        "duration": 5,
+        "maxGroupSize": 25,
+        "difficulty": "easy",
+        "ratingsAverage": 4.7
     }
 ]
